@@ -4,14 +4,14 @@
 }
 
 .body{
-    background: url(bg.jpg);
+    background: url(snake.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     min-height: 100vh;
     display: flex;
-    justify-content:left;
-    align-items: center;
+    justify-content:right;
+    align-items:flex-start;
 
 }
 
