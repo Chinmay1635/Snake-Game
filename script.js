@@ -12,8 +12,8 @@ let snakeArr = [
 ]
 let score = 0;
 let scoreDiv = document.getElementById("score");
-food = {x:12, y:17};
-
+let food = {x:12, y:17};
+let poisonedFood = {x:8, y:4};   
 //Game Functions
 function main(ctime){
     window.requestAnimationFrame(main);
@@ -38,9 +38,15 @@ function isColloid(snakeArr){
         return true;
     }
 }
+
+function suicide(snakeArr){
+  if(snakeArr[0].x === poisonedFood.x && snakeArr[0].y === poisonedFood.y){
+    return true;
+  }  
+}
 function gameEngine(){
     //Part 1: Updating snake array & food
-    if(isColloid(snakeArr)){
+    if(isColloid(snakeArr) || suicide(snakeArr)){
         gameOverSound.play();
         musicSound.pause();
         inputDir = {x:0, y:0};
@@ -59,7 +65,9 @@ function gameEngine(){
         let a = 2;
         let b = 20;
         food = {x: Math.round(a + (b-a)*Math.random()),y: Math.round(a + (b-a)*Math.random())};
+        poisonedFood = {x: Math.round(a + (b-a)*Math.random()),y: Math.round(a + (b-a)*Math.random())};
     }
+
     //Moving the snake
     for(let i = snakeArr.length-2;i >= 0; i--){
         snakeArr[i+1] = {...snakeArr[i]};    
@@ -67,8 +75,6 @@ function gameEngine(){
 
     snakeArr[0].x += inputDir.x;
     snakeArr[0].y += inputDir.y;
-
-
 
     //Part 2: Display snake array and food
     //Display the snake
@@ -92,15 +98,15 @@ function gameEngine(){
         foodElement.classList.add('food');
         board.appendChild(foodElement);
 
-
+    //Display poisoned food
+    if(food != poisonedFood){
+        poisonedFoodElement = document.createElement('div');
+        poisonedFoodElement.style.gridColumnStart = poisonedFood.x;
+        poisonedFoodElement.style.gridRowStart = poisonedFood.y;
+        poisonedFoodElement.classList.add('poisonedFood');
+        board.appendChild(poisonedFoodElement);
+    }
 }
-
-
-
-
-
-
-
 
 
 //Main logic starts here
