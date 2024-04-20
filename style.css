@@ -29,7 +29,7 @@
 }
 
 #board{
-    background: linear-gradient(rgb(215, 218, 215),rgb(238, 238, 146));
+    background: linear-gradient(rgb(92, 241, 92),rgb(240, 240, 227));
     width: 90vmin;
     height: 90vmin;
     margin-left: 10vw;
@@ -53,9 +53,10 @@
 }
 
 .food{
-    background: linear-gradient(red,purple);
-    border: .25vmin solid black;
-    border-radius: 8px;
+    background: url(redapple.png);
+    background-position: center;
+    background-size: cover;
+    
 
 
 }
