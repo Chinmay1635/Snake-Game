@@ -10,6 +10,8 @@ let board = document.getElementById("board");
 let snakeArr = [
     {x:13,y:13}
 ]
+let score = 0;
+let scoreDiv = document.getElementById("score");
 food = {x:12, y:17};
 
 //Game Functions
@@ -45,11 +47,14 @@ function gameEngine(){
         alert("Game over press any key to play again");
         snakeArr = [{x:13,y:13}];
         score = 0;
+        scoreDiv.innerHTML = "Score: " + score;
     }
 
     // If you have eaten the food, Increment the score and regenerate food
     if(snakeArr[0].y === food.y && snakeArr[0].x === food.x){
         foodSound.play();
+        score +=1;
+        scoreDiv.innerHTML = "Score: " + score;
         snakeArr.unshift({x: snakeArr[0].x + inputDir.x, y: snakeArr[0].y + inputDir.y});
         let a = 2;
         let b = 20;
