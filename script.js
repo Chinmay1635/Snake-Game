@@ -52,6 +52,7 @@ function gameEngine(){
         snakeArr = [{x:13,y:13}];
         score = 0;
         scoreDiv.innerHTML = "Score: " + score;
+        speed = 5;
     }
 
     // If you have eaten the food, Increment the score and regenerate food
