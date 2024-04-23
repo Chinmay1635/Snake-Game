@@ -1,15 +1,13 @@
-let direction = {x:0, y:0};
 const foodSound = new Audio('food.mp3');
 const gameOverSound = new Audio('gameover.mp3');
 const moveSound = new Audio('move.mp3');
 const musicSound = new Audio('music.mp3');
+let direction = {x:0, y:0};
 let speed = 5;
 let inputDir = {x:0, y:0};
 let lastPaintTime = 0;
 let board = document.getElementById("board");
-let snakeArr = [
-    {x:13,y:13}
-]
+let snakeArr = [{x:13,y:13}];
 let score = 0;
 let scoreDiv = document.getElementById("score");
 let food = {x:12, y:17};
@@ -66,6 +64,12 @@ function gameEngine(){
         let b = 20;
         food = {x: Math.round(a + (b-a)*Math.random()),y: Math.round(a + (b-a)*Math.random())};
         poisonedFood = {x: Math.round(a + (b-a)*Math.random()),y: Math.round(a + (b-a)*Math.random())};
+        
+        //Increasing speed of snake after eating 5 apples
+        
+        if(score!=0 && score%5==0){
+            speed+=1;
+        }
     }
 
     //Moving the snake
@@ -107,6 +111,7 @@ function gameEngine(){
         board.appendChild(poisonedFoodElement);
     }
 }
+
 
 
 //Main logic starts here
