@@ -12,7 +12,7 @@ let score = 0;
 let scoreDiv = document.getElementById("score");
 let food = {x:12, y:17};
 let poisonedFood = {x:8, y:4}; 
-let goldenFood = {x:15, y:5}; 
+let goldenFood = {x:100, y:5}; 
 let timedOut = false; 
 //Game Functions
 function main(ctime){

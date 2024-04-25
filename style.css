@@ -29,7 +29,8 @@
 }
 
 #board{
-    background: linear-gradient(rgb(47, 229, 50),rgb(240, 240, 227));
+    background: linear-gradient(rgb(255, 255, 255),blue);
+    
     width: 90vmin;
     height: 90vmin;
     margin-left: 10vw;
