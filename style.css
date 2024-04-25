@@ -29,7 +29,7 @@
 }
 
 #board{
-    background: linear-gradient(rgb(241, 224, 92),rgb(240, 240, 227));
+    background: linear-gradient(rgb(47, 229, 50),rgb(240, 240, 227));
     width: 90vmin;
     height: 90vmin;
     margin-left: 10vw;
@@ -60,6 +60,12 @@
 
 .poisonedFood{
     background: url(poisonedApple.png);
+    background-position: center;
+    background-size: cover;
+}
+
+.goldenFood{
+    background: url(goldenFood.png);
     background-position: center;
     background-size: cover;
 }

@@ -11,7 +11,9 @@ let snakeArr = [{x:13,y:13}];
 let score = 0;
 let scoreDiv = document.getElementById("score");
 let food = {x:12, y:17};
-let poisonedFood = {x:8, y:4};   
+let poisonedFood = {x:8, y:4}; 
+let goldenFood = {x:15, y:5}; 
+let timedOut = false; 
 //Game Functions
 function main(ctime){
     window.requestAnimationFrame(main);
@@ -42,7 +44,30 @@ function suicide(snakeArr){
     return true;
   }  
 }
+
+function heaven(){
+    if(snakeArr[0].y === goldenFood.y && snakeArr[0].x === goldenFood.x){
+        foodSound.play();
+        score +=5;
+        scoreDiv.innerHTML = "Score: " + score;
+        snakeArr.unshift({x: snakeArr[0].x + inputDir.x, y: snakeArr[0].y + inputDir.y});
+        let a = 2;
+        let b = 20;
+        food = {x: Math.round(a + (b-a)*Math.random()),y: Math.round(a + (b-a)*Math.random())};
+        poisonedFood = {x: Math.round(a + (b-a)*Math.random()),y: Math.round(a + (b-a)*Math.random())};
+        
+        //Increasing speed of snake after eating 5 apples
+        
+        if(score!=0 && score%5==0){
+            speed+=1;
+        }
+    }
+}
 function gameEngine(){
+    if(timedOut == false){
+        heaven();
+    }
+
     //Part 1: Updating snake array & food
     if(isColloid(snakeArr) || suicide(snakeArr)){
         gameOverSound.play();
@@ -65,13 +90,19 @@ function gameEngine(){
         let b = 20;
         food = {x: Math.round(a + (b-a)*Math.random()),y: Math.round(a + (b-a)*Math.random())};
         poisonedFood = {x: Math.round(a + (b-a)*Math.random()),y: Math.round(a + (b-a)*Math.random())};
-        
+        timedOut = false;
         //Increasing speed of snake after eating 5 apples
         
         if(score!=0 && score%5==0){
             speed+=1;
         }
+
+        //Generating golden food
+        
+        goldenFood = {x: Math.round(a + (b-a)*Math.random()),y: Math.round(a + (b-a)*Math.random())};
+        
     }
+
 
     //Moving the snake
     for(let i = snakeArr.length-2;i >= 0; i--){
@@ -111,6 +142,23 @@ function gameEngine(){
         poisonedFoodElement.classList.add('poisonedFood');
         board.appendChild(poisonedFoodElement);
     }
+
+    //Display golden food
+        if(score!=0 && score%5==0 && score%10!=0 && timedOut == false){
+        goldenFoodElement = document.createElement('div');
+        goldenFoodElement.style.gridColumnStart = goldenFood.x;
+        goldenFoodElement.style.gridRowStart = goldenFood.y;
+        goldenFoodElement.classList.add('goldenFood');
+        board.appendChild(goldenFoodElement);
+        
+    // Setting time for eating golden food 5 seconds if player can't eat in 5 seconds the golden apple will disappered
+        setTimeout(()=>{
+            goldenFoodElement.remove();
+            timedOut = true;
+        },5000)
+        }
+
+
 }
 
 
