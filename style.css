@@ -13,7 +13,7 @@
     min-height: 100vh;
     display: flex;
     justify-content:right;
-    align-items:flex-start;
+    align-items:center;
 
 }
 
@@ -29,12 +29,13 @@
 }
 
 #board{
-    background: linear-gradient(rgb(255, 255, 255),blue);
+    background: black;
     
     width: 90vmin;
     height: 90vmin;
     margin-left: 10vw;
-    border: 2px solid black;
+    border: 5px solid rgb(255, 1, 217);
+    border-radius: 10px;
     display: grid;
     grid-template-columns: repeat(22, 1fr);
     grid-template-rows: repeat(22, 1fr);
