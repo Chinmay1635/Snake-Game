@@ -64,7 +64,7 @@ function heaven(){
     }
 }
 function gameEngine(){
-    if(timedOut == false){
+    if(score!=0 && score%5==0 && score%10!=0 && timedOut == false){
         heaven();
     }
 
@@ -165,26 +165,26 @@ function gameEngine(){
 
 //Main logic starts here
 window.requestAnimationFrame(main);
-window.addEventListener('keypress', e =>{
+window.addEventListener('keydown', e =>{
     inputDir = {x:0, y:0};  //Start game
     moveSound.play();
     switch (e.key){
-        case 'a':
+        case 'ArrowLeft':
             console.log("ArrowLeft");
             inputDir.x = -1;
             inputDir.y = 0;
             break;
-        case 'w':
+        case 'ArrowUp':
             console.log("ArrowUp");
             inputDir.x = 0;
             inputDir.y = -1;
             break;
-        case 'd':
+        case 'ArrowRight':
             console.log("ArrowRight");
             inputDir.x = 1;
             inputDir.y = 0;
             break;
-        case 's':
+        case 'ArrowDown':
             console.log("ArrowDown");
             inputDir.x = 0;
             inputDir.y = 1;

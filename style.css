@@ -42,7 +42,7 @@
 }
 
 .head{
-    background: linear-gradient(red,yellow);
+    background: linear-gradient(rgb(0, 255, 106),rgb(248, 248, 244));
     border: 2px solid purple;
     border-radius: 8px;
     transform: scale(1.02);
